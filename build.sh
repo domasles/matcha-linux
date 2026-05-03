@@ -35,6 +35,7 @@ fi
 cp "$WORKSPACE/iso-profile/mkimg.matcha.sh" "$APORTS/scripts/"
 cp "$WORKSPACE/iso-profile/genapkovl.sh" "$APORTS/scripts/"
 
+chmod +x "$APORTS/scripts/mkimg.matcha.sh"
 chmod +x "$APORTS/scripts/genapkovl.sh"
 
 cd "$APORTS/scripts"
