@@ -1,9 +1,11 @@
 #!/bin/sh
 set -e
 
+ALPINE_VERSION="3.23"
+MATCHA_VERSION="v26.05.04"
+
 WORKSPACE=$(pwd)
 APORTS="$HOME/aports"
-ALPINE_VERSION="3.23"
 
 if [ "$(id -u)" -eq 0 ]; then
     apk update
@@ -44,5 +46,6 @@ cd "$APORTS/scripts"
 sh mkimage.sh \
     --outdir /out \
     --repository https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main \
+    --repository https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/community \
     --profile matcha \
-    --tag $VERSION
+    --tag $MATCHA_VERSION

@@ -1,5 +1,3 @@
-VERSION="v26.04"
-
 profile_matcha() {
     profile_standard
     kernel_cmdline="unionfs_size=512M console=tty0"
@@ -7,5 +5,5 @@ profile_matcha() {
     apkovl="genapkovl.sh"
     image_name="matcha-linux"
     title="Matcha Linux"
-    apks="$apks alpine-base"
+    apks="$apks alpine-base doas networkmanager gnome"
 }

@@ -7,10 +7,10 @@ TMP=$(mktemp -d)
 
 trap "rm -rf $TMP" EXIT
 
-mkdir -p "$TMP"/etc
-mkdir -p "$TMP"/etc/runlevels/default
-mkdir -p "$TMP"/etc/runlevels/sysinit
-mkdir -p "$TMP"/etc/runlevels/boot
+rc_add() {
+    mkdir -p "$TMP"/etc/runlevels/"$2"
+    ln -sf /etc/init.d/"$1" "$TMP"/etc/runlevels/"$2"/"$1"
+}
 
 if [ -d "$WORKSPACE/rootfs/etc" ]; then
     cp -a "$WORKSPACE/rootfs/etc/." "$TMP/etc/"
@@ -18,17 +18,20 @@ fi
 
 echo "$HOSTNAME" > "$TMP"/etc/hostname
 
-ln -sf /etc/init.d/hwdrivers "$TMP"/etc/runlevels/sysinit/hwdrivers
-ln -sf /etc/init.d/modloop "$TMP"/etc/runlevels/sysinit/modloop
-ln -sf /etc/init.d/devfs "$TMP"/etc/runlevels/sysinit/devfs
-ln -sf /etc/init.d/dmesg "$TMP"/etc/runlevels/sysinit/dmesg
-ln -sf /etc/init.d/mdev "$TMP"/etc/runlevels/sysinit/mdev
+rc_add hwdrivers sysinit
+rc_add modloop sysinit
+rc_add devfs sysinit
+rc_add dmesg sysinit
+rc_add mdev sysinit
 
-ln -sf /etc/init.d/sysctl "$TMP"/etc/runlevels/boot/sysctl
-ln -sf /etc/init.d/syslog "$TMP"/etc/runlevels/boot/syslog
-ln -sf /etc/init.d/hwclock "$TMP"/etc/runlevels/boot/hwclock
-ln -sf /etc/init.d/modules "$TMP"/etc/runlevels/boot/modules
-ln -sf /etc/init.d/bootmisc "$TMP"/etc/runlevels/boot/bootmisc
-ln -sf /etc/init.d/hostname "$TMP"/etc/runlevels/boot/hostname
+rc_add sysctl boot
+rc_add syslog boot
+rc_add hwclock boot
+rc_add modules boot
+rc_add bootmisc boot
+rc_add hostname boot
+
+rc_add networkmanager default
+rc_add gdm default
 
 tar -C "$TMP" -c . | gzip -9 > "$HOSTNAME.apkovl.tar.gz"
