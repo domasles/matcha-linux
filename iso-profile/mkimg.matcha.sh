@@ -5,5 +5,5 @@ profile_matcha() {
     apkovl="genapkovl.sh"
     image_name="matcha-linux"
     title="Matcha Linux"
-    apks="$apks alpine-base doas networkmanager gnome"
+    apks="$apks alpine-base doas networkmanager elogind polkit-elogind eudev udev-init-scripts udev-init-scripts-openrc dbus gnome gnome-apps-core"
 }

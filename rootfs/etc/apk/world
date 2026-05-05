@@ -1,5 +1,11 @@
 alpine-base
-openssl
 doas
 networkmanager
+elogind
+polkit-elogind
+eudev
+udev-init-scripts
+udev-init-scripts-openrc
+dbus
 gnome
+gnome-apps-core
