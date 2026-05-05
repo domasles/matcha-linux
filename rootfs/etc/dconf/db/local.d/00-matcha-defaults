@@ -1,11 +1,6 @@
 [org/gnome/desktop/interface]
-gtk-application-prefer-dark-style=true
 color-scheme='prefer-dark'
 gtk-theme='Adwaita'
 
 [org/gnome/shell]
 enabled-extensions=['matcha-theme@matcha-linux']
-
-[org/gnome/shell/extensions/dash-to-dock]
-position='BOTTOM'
-autohide=true

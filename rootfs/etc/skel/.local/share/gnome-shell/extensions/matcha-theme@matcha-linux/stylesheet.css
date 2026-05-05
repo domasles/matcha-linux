@@ -1,0 +1,16 @@
+#panel {
+    background-color: rgba(0, 40, 10, 1) !important;
+}
+
+#panel .panel-button {
+    color: #ffffff !important;
+}
+
+#panel .clock-display,
+#panel .system-status-icon {
+    color: #ffffff !important;
+}
+
+#panel .activities-label {
+    color: #ffffff !important;
+}

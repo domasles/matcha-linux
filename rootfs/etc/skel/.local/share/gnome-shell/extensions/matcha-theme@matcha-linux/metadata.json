@@ -2,9 +2,7 @@
   "name": "Matcha Theme",
   "description": "Green theme for Matcha Linux GNOME Shell",
   "uuid": "matcha-theme@matcha-linux",
-  "shell-version": [
-    "49"
-  ],
-  "version": 1,
+  "shell-version": [ "49" ],
+  "main-version": 2,
   "author": "Matcha Linux"
 }

@@ -29,7 +29,9 @@ fi
 
 mkdir -p "$TMP/home/matcha"
 cp -a "$TMP/etc/skel/." "$TMP/home/matcha/" 2>/dev/null || true
+
 chown -R 1000:1000 "$TMP/home/matcha" 2>/dev/null || true
+chmod 0440 "$TMP/etc/doas.conf" 2>/dev/null || true
 
 echo "$HOSTNAME" > "$TMP"/etc/hostname
 
