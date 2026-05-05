@@ -1,4 +1,5 @@
 alpine-base
+git
 doas
 networkmanager
 elogind
@@ -9,3 +10,7 @@ udev-init-scripts-openrc
 dbus
 gnome
 gnome-apps-core
+gnome-shell-extensions
+zsh
+distrobox
+pulseaudio

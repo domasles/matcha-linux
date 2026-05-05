@@ -1,0 +1,10 @@
+{
+  "name": "Matcha Theme",
+  "description": "Green theme for Matcha Linux GNOME Shell",
+  "uuid": "matcha-theme@matcha-linux",
+  "shell-version": [
+    "49"
+  ],
+  "version": 1,
+  "author": "Matcha Linux"
+}
