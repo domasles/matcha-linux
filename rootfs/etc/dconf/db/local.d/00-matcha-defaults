@@ -1,6 +1,7 @@
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
 gtk-theme='Adwaita'
+accent-color='green'
 
 [org/gnome/shell]
-enabled-extensions=['matcha-theme@matcha-linux']
+enabled-extensions=['matcha-theme@matcha-linux', 'dash-to-dock@micxgx.gmail.com', 'emoji-copy@felipeftn', 'clipboard-indicator@tudmotu.com', 'caffeine@patapon.info']

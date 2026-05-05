@@ -5,8 +5,8 @@ profile_matcha() {
     apkovl="genapkovl.sh"
     image_name="matcha-linux"
     title="Matcha Linux"
-    apks="$apks alpine-base git doas networkmanager elogind polkit-elogind
-        eudev udev-init-scripts udev-init-scripts-openrc dbus
-        gnome gnome-apps-core gnome-shell-extensions zsh
-        distrobox pulseaudio"
+    apks="$apks alpine-base git doas networkmanager
+        elogind polkit-elogind eudev udev-init-scripts
+        udev-init-scripts-openrc dbus gnome gnome-apps-core
+        gnome-shell-extensions zsh distrobox pulseaudio"
 }

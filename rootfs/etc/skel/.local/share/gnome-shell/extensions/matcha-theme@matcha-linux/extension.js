@@ -20,6 +20,13 @@ export default class MatchaTheme extends Extension {
 
             theme.unload_stylesheet(this._stylesheet);
             this._stylesheet = null;
+
+            const newTheme = new St.Theme({
+                application_stylesheet: theme.application_stylesheet,
+                default_stylesheet: theme.default_stylesheet,
+            });
+
+            context.set_theme(newTheme);
         }
     }
 }
