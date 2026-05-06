@@ -14,5 +14,9 @@
     {
         "uuid": "caffeine@patapon.info",
         "url": "https://extensions.gnome.org/extension-data/caffeinepatapon.info.v60.shell-extension.zip"
+    },
+    {
+        "uuid": "tilingshell@ferrarodomenico.com",
+        "url": "https://extensions.gnome.org/extension-data/tilingshellferrarodomenico.com.v76.shell-extension.zip"
     }
 ]

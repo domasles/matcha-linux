@@ -1,0 +1,110 @@
+[
+    {
+        "path": "/etc/shadow",
+        "mode": "0600",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/passwd",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/group",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/doas.conf",
+        "mode": "0440",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/dconf/db/local",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/dconf/profile/user",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/gdm/custom.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/hostname",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/motd",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/issue",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/rc.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/apk/world",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/**",
+        "mode": "0755",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/usr/share/**",
+        "mode": "0755",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/usr/share/backgrounds/matcha/*",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/usr/share/gnome-background-properties/*",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/home/matcha",
+        "mode": "0700",
+        "owner": "matcha",
+        "group": "matcha"
+    },
+    {
+        "path": "/home/matcha/.*",
+        "mode": "0700",
+        "owner": "matcha",
+        "group": "matcha"
+    }
+]

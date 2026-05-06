@@ -6,7 +6,8 @@ HOSTNAME="matcha"
 TMP=$(mktemp -d)
 
 EXT_DIR="$TMP"/etc/skel/.local/share/gnome-shell/extensions
-EXT_LIST="$WORKSPACE"/iso-profile/extensions.json
+EXT_LIST="$WORKSPACE"/iso-profile/config/extensions.json
+PERM_LIST="$WORKSPACE"/iso-profile/config/permissions.json
 
 trap "rm -rf '$TMP'" EXIT
 
@@ -20,7 +21,11 @@ if [ -d "$WORKSPACE"/rootfs ]; then
 fi
 
 if command -v dconf >/dev/null 2>&1; then
-    dconf compile "$TMP"/etc/dconf/db/local "$TMP"/etc/dconf/db/local.d/ 2>/dev/null || true
+    for dir in "$TMP"/etc/dconf/db/*.d/; do
+        [ -d "$dir" ] || continue
+        dbname="${dir%.d/}"
+        dconf compile "$dbname" "$dir" 2>/dev/null || true
+    done
 fi
 
 if command -v git >/dev/null 2>&1; then
@@ -49,7 +54,16 @@ mkdir -p "$TMP"/home/matcha
 cp -a "$TMP"/etc/skel/. "$TMP"/home/matcha/ 2>/dev/null || true
 
 chown -R 1000:1000 "$TMP"/home/matcha 2>/dev/null || true
-chmod 0440 "$TMP"/etc/doas.conf 2>/dev/null || true
+
+if [ -f "$PERM_LIST" ]; then
+    jq -r '.[] | "\(.path) \(.mode) \(.owner) \(.group)"' "$PERM_LIST" | while IFS=' ' read -r path mode owner group; do
+        for target in $(find "$TMP" -path "$TMP$path" 2>/dev/null | sed "s|^$TMP||"); do
+            [ -e "$TMP$target" ] || continue
+            chmod "$mode" "$TMP$target" 2>/dev/null || true
+            chown "$owner:$group" "$TMP$target" 2>/dev/null || true
+        done
+    done
+fi
 
 echo "$HOSTNAME" > "$TMP"/etc/hostname
 

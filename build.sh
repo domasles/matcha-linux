@@ -36,7 +36,7 @@ if [ ! -d "$APORTS" ]; then
     git clone --depth 1 --branch "$ALPINE_VERSION-stable" https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
 fi
 
-cp "$WORKSPACE"/iso-profile/* "$APORTS"/scripts/
+cp -a "$WORKSPACE"/iso-profile/. "$APORTS"/scripts/
 chmod +x "$APORTS"/scripts/*.sh
 
 cd "$APORTS"/scripts

@@ -1,10 +1,19 @@
+[org/gnome/desktop/wm/preferences]
+button-layout=':minimize,maximize,close'
+
 [org/gnome/desktop/interface]
 color-scheme='prefer-dark'
-gtk-theme='Adwaita'
 accent-color='green'
 
 [org/gnome/shell]
-enabled-extensions=['matcha-theme@matcha-linux', 'dash-to-dock@micxgx.gmail.com', 'emoji-copy@felipeftn', 'clipboard-indicator@tudmotu.com', 'caffeine@patapon.info']
+enabled-extensions=[
+    'matcha-theme@matcha-linux',
+    'dash-to-dock@micxgx.gmail.com',
+    'emoji-copy@felipeftn',
+    'clipboard-indicator@tudmotu.com',
+    'caffeine@patapon.info',
+    'tilingshell@ferrarodomenico.com'
+]
 
 [org/gnome/desktop/background]
 picture-uri='file:///usr/share/backgrounds/matcha/wallpaper-1.jpg'
@@ -26,3 +35,9 @@ background-opacity=0.8
 
 dash-max-icon-size=56
 dock-position='BOTTOM'
+
+[org/gnome/shell/extensions/tilingshell]
+enable-blur-snap-assistant=true
+enable-blur-selected-tilepreview=true
+top-edge-maximize=true
+enable-move-keybindings=false
