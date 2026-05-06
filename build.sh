@@ -2,7 +2,7 @@
 set -e
 
 ALPINE_VERSION="3.23"
-MATCHA_VERSION="v26.05.06"
+MATCHA_VERSION="26.05.06"
 
 WORKSPACE=$(pwd)
 APORTS="$HOME/aports"
@@ -11,7 +11,7 @@ if [ "$(id -u)" -eq 0 ]; then
     apk update
     apk add --no-cache alpine-sdk xorriso squashfs-tools \
         syslinux grub-efi mtools mkinitfs git doas dconf \
-        alpine-conf nodejs unzip jq
+        alpine-conf nodejs unzip jq glib
 
     if ! id builduser >/dev/null 2>&1; then
         adduser -D builduser
@@ -40,7 +40,7 @@ cp "$WORKSPACE"/iso-profile/* "$APORTS"/scripts/
 chmod +x "$APORTS"/scripts/*.sh
 
 cd "$APORTS"/scripts
-. ./mkimg.matcha.sh
+source ./mkimg.matcha.sh
 
 sh mkimage.sh \
     --outdir /out \

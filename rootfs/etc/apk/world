@@ -14,3 +14,8 @@ gnome-shell-extensions
 zsh
 distrobox
 pulseaudio
+font-noto
+font-noto-extra
+font-noto-emoji
+font-noto-cjk
+font-noto-symbols

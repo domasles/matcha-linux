@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<!DOCTYPE wallpapers SYSTEM "gnome-wp-list.dtd">
+<wallpapers>
+  <wallpaper deleted="false">
+    <name>Matcha</name>
+    <filename>/usr/share/backgrounds/matcha/wallpaper-1.jpg</filename>
+    <filename-dark>/usr/share/backgrounds/matcha/wallpaper-1.jpg</filename-dark>
+    <options>zoom</options>
+    <shade_type>solid</shade_type>
+    <pcolor>#00280a</pcolor>
+    <scolor>#00280a</scolor>
+  </wallpaper>
+</wallpapers>

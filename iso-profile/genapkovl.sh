@@ -37,6 +37,10 @@ if [ -f "$EXT_LIST" ]; then
         wget -q -O "$tmpzip" "$url"
         unzip -q "$tmpzip" -d "$EXT_DIR"/"$uuid"
 
+        if [ -d "$EXT_DIR/$uuid/schemas" ]; then
+            glib-compile-schemas "$EXT_DIR/$uuid/schemas"
+        fi
+
         rm "$tmpzip"
     done
 fi
@@ -66,8 +70,9 @@ rc_add modules boot
 rc_add bootmisc boot
 rc_add hostname boot
 
-rc_add udev-postmount default
+rc_add apk-polkit-server default
 rc_add networkmanager default
+rc_add udev-postmount default
 rc_add elogind default
 rc_add gdm default
 

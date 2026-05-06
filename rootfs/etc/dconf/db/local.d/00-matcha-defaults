@@ -5,3 +5,24 @@ accent-color='green'
 
 [org/gnome/shell]
 enabled-extensions=['matcha-theme@matcha-linux', 'dash-to-dock@micxgx.gmail.com', 'emoji-copy@felipeftn', 'clipboard-indicator@tudmotu.com', 'caffeine@patapon.info']
+
+[org/gnome/desktop/background]
+picture-uri='file:///usr/share/backgrounds/matcha/wallpaper-1.jpg'
+picture-uri-dark='file:///usr/share/backgrounds/matcha/wallpaper-1.jpg'
+picture-options='zoom'
+
+[org/gnome/shell/extensions/dash-to-dock]
+running-indicator-style='DOTS'
+show-show-apps-button=false
+
+show-mounts=true
+show-mounts-only-mounted=true
+
+custom-background-color=true
+background-color='#00280A'
+
+transparency-mode='FIXED'
+background-opacity=0.8
+
+dash-max-icon-size=56
+dock-position='BOTTOM'

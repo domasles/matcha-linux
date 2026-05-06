@@ -1,16 +1,37 @@
+#overview {
+    background-color: rgba(0, 40, 10, 1);
+}
+
+#overview .overview-tile:hover,
+.app-folder-dialog-container .overview-tile:hover {
+    background-color: rgba(0, 70, 10, 1);
+}
+
+#overview .app-folder {
+    background-color: rgba(0, 70, 10, 1);
+}
+
+#overview .app-folder:hover {
+    background-color: rgba(0, 90, 10, 1);
+}
+
+.app-folder-dialog-container .app-folder-dialog {
+    background-color: rgba(0, 50, 10, 1);
+}
+
 #panel {
-    background-color: rgba(0, 40, 10, 1) !important;
+    background-color: rgba(0, 40, 10, 1);
 }
 
 #panel .panel-button {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 #panel .clock-display,
 #panel .system-status-icon {
-    color: #ffffff !important;
+    color: #ffffff;
 }
 
 #panel .activities-label {
-    color: #ffffff !important;
+    color: #ffffff;
 }
