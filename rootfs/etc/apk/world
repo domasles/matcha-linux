@@ -16,8 +16,11 @@ distrobox
 pipewire
 pipewire-pulse
 wireplumber
+networkmanager-wifi
+icu-data-full
 font-noto
 font-noto-extra
 font-noto-emoji
 font-noto-cjk
 font-noto-symbols
+apk-polkit-rs

@@ -26,6 +26,7 @@ netdev:x:103:matcha
 users:x:100:games
 dbus:x:81:
 gdm:x:97:
+plugdev:x:92:matcha
 ping:x:999:
 klogd:x:101:
 nobody:x:65534:

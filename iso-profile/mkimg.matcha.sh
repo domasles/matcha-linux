@@ -9,6 +9,7 @@ profile_matcha() {
         elogind polkit-elogind eudev udev-init-scripts
         udev-init-scripts-openrc dbus gnome gnome-apps-core
         gnome-shell-extensions zsh distrobox pipewire
-        pipewire-pulse wireplumber font-noto font-noto-extra
-        font-noto-emoji font-noto-cjk font-noto-symbols"
+        pipewire-pulse wireplumber networkmanager-wifi
+        icu-data-full font-noto font-noto-extra font-noto-emoji
+        font-noto-cjk font-noto-symbols apk-polkit-rs"
 }
