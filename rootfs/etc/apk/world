@@ -13,7 +13,9 @@ gnome-apps-core
 gnome-shell-extensions
 zsh
 distrobox
-pulseaudio
+pipewire
+pipewire-pulse
+wireplumber
 font-noto
 font-noto-extra
 font-noto-emoji

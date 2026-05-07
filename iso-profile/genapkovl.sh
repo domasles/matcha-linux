@@ -5,7 +5,7 @@ WORKSPACE=${WORKSPACE:-$(pwd)}
 HOSTNAME="matcha"
 TMP=$(mktemp -d)
 
-EXT_DIR="$TMP"/etc/skel/.local/share/gnome-shell/extensions
+EXT_DIR="$TMP"/usr/share/gnome-shell/extensions
 EXT_LIST="$WORKSPACE"/iso-profile/config/extensions.json
 PERM_LIST="$WORKSPACE"/iso-profile/config/permissions.json
 

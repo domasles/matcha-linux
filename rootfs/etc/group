@@ -30,3 +30,4 @@ ping:x:999:
 klogd:x:101:
 nobody:x:65534:
 matcha:x:1000:
+seat:x:104:matcha

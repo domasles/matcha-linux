@@ -24,18 +24,6 @@
         "group": "root"
     },
     {
-        "path": "/etc/dconf/db/local",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/dconf/profile/user",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
         "path": "/etc/gdm/custom.conf",
         "mode": "0644",
         "owner": "root",
@@ -66,8 +54,8 @@
         "group": "root"
     },
     {
-        "path": "/etc/apk/world",
-        "mode": "0644",
+        "path": "/etc/apk/**",
+        "mode": "0755",
         "owner": "root",
         "group": "root"
     },
@@ -78,32 +66,44 @@
         "group": "root"
     },
     {
+        "path": "/etc/gdm/**",
+        "mode": "0755",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/dconf/db/**",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/dconf/profile/**",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
         "path": "/usr/share/**",
         "mode": "0755",
         "owner": "root",
         "group": "root"
     },
     {
-        "path": "/usr/share/backgrounds/matcha/*",
+        "path": "/usr/share/backgrounds/matcha/**",
         "mode": "0644",
         "owner": "root",
         "group": "root"
     },
     {
-        "path": "/usr/share/gnome-background-properties/*",
+        "path": "/usr/share/gnome-background-properties/**",
         "mode": "0644",
         "owner": "root",
         "group": "root"
     },
     {
-        "path": "/home/matcha",
-        "mode": "0700",
-        "owner": "matcha",
-        "group": "matcha"
-    },
-    {
-        "path": "/home/matcha/.*",
-        "mode": "0700",
+        "path": "/home/matcha/**",
+        "mode": "0750",
         "owner": "matcha",
         "group": "matcha"
     }

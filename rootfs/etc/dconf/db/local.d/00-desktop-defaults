@@ -6,14 +6,7 @@ color-scheme='prefer-dark'
 accent-color='green'
 
 [org/gnome/shell]
-enabled-extensions=[
-    'matcha-theme@matcha-linux',
-    'dash-to-dock@micxgx.gmail.com',
-    'emoji-copy@felipeftn',
-    'clipboard-indicator@tudmotu.com',
-    'caffeine@patapon.info',
-    'tilingshell@ferrarodomenico.com'
-]
+enabled-extensions=['matcha-theme@matcha-linux', 'dash-to-dock@micxgx.gmail.com', 'emoji-copy@felipeftn', 'clipboard-indicator@tudmotu.com', 'caffeine@patapon.info', 'tilingshell@ferrarodomenico.com']
 
 [org/gnome/desktop/background]
 picture-uri='file:///usr/share/backgrounds/matcha/wallpaper-1.jpg'
@@ -21,12 +14,13 @@ picture-uri-dark='file:///usr/share/backgrounds/matcha/wallpaper-1.jpg'
 picture-options='zoom'
 
 [org/gnome/shell/extensions/dash-to-dock]
-running-indicator-style='DOTS'
 show-show-apps-button=false
+disable-overview-on-startup=true
 
 show-mounts=true
 show-mounts-only-mounted=true
 
+running-indicator-style='DOTS'
 custom-background-color=true
 background-color='#00280A'
 
