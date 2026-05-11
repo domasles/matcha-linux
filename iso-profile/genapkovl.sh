@@ -42,8 +42,8 @@ if [ -f "$EXT_LIST" ]; then
         wget -q -O "$tmpzip" "$url"
         unzip -q "$tmpzip" -d "$EXT_DIR"/"$uuid"
 
-        if [ -d "$EXT_DIR/$uuid/schemas" ]; then
-            glib-compile-schemas "$EXT_DIR/$uuid/schemas"
+        if [ -d "$EXT_DIR"/"$uuid"/schemas ]; then
+            glib-compile-schemas "$EXT_DIR"/"$uuid"/schemas
         fi
 
         rm "$tmpzip"
@@ -60,7 +60,7 @@ if [ -f "$PERM_LIST" ]; then
         for target in $(find "$TMP" -path "$TMP$path" 2>/dev/null | sed "s|^$TMP||"); do
             [ -e "$TMP$target" ] || continue
             chmod "$mode" "$TMP$target" 2>/dev/null || true
-            chown "$owner:$group" "$TMP$target" 2>/dev/null || true
+            chown "$owner":"$group" "$TMP$target" 2>/dev/null || true
         done
     done
 fi

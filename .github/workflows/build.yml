@@ -22,5 +22,5 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: matcha-iso
-          path: /out/*.iso
+          path: /out/**/*.iso
           if-no-files-found: error

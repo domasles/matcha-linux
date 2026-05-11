@@ -2,10 +2,10 @@
 set -e
 
 ALPINE_VERSION="3.23"
-MATCHA_VERSION="26.05.08"
+MATCHA_VERSION="26.05.11"
 
 WORKSPACE=$(pwd)
-APORTS="$HOME/aports"
+APORTS="$HOME"/aports
 
 if [ "$(id -u)" -eq 0 ]; then
     apk update
@@ -27,13 +27,13 @@ if [ "$(id -u)" -eq 0 ]; then
     exec su - builduser -c "cd '$WORKSPACE' && WORKSPACE='$WORKSPACE' sh '$0'"
 fi
 
-if [ ! -f "$HOME/.abuild/"*.rsa ]; then
+if [ ! -f "$HOME"/.abuild/*.rsa ]; then
     abuild-keygen -a -n
     doas cp "$HOME"/.abuild/*.rsa.pub /etc/apk/keys/
 fi
 
 if [ ! -d "$APORTS" ]; then
-    git clone --depth 1 --branch "$ALPINE_VERSION-stable" https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
+    git clone --depth 1 --branch "$ALPINE_VERSION"-stable https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
 fi
 
 cp -a "$WORKSPACE"/iso-profile/. "$APORTS"/scripts/
