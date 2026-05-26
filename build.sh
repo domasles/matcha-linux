@@ -2,10 +2,16 @@
 set -e
 
 ALPINE_VERSION="3.23"
-MATCHA_VERSION="26.05.11"
+MATCHA_VERSION="26.05.26"
 
 WORKSPACE=$(pwd)
-APORTS="$HOME"/aports
+
+APORTS="$HOME/aports"
+CHROOT="$APORTS/chroot"
+
+trap "doas rm -rf '$CHROOT'" EXIT
+
+USER_GROUPS="audio input video kvm netdev plugdev seat"
 
 if [ "$(id -u)" -eq 0 ]; then
     apk update
@@ -36,11 +42,22 @@ if [ ! -d "$APORTS" ]; then
     git clone --depth 1 --branch "$ALPINE_VERSION"-stable https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
 fi
 
+mkdir -p "$CHROOT/etc/apk/keys"
+doas cp /etc/apk/keys/* "$CHROOT/etc/apk/keys/"
+
+doas apk add --root "$CHROOT" --initdb \
+    --repository https://dl-cdn.alpinelinux.org/alpine/v"$ALPINE_VERSION"/main \
+    --no-cache alpine-base
+
+doas chroot "$CHROOT" /bin/sh -c "adduser -D -h /home/matcha -s /bin/zsh -G wheel -g 'Live User' -u 1000 matcha || true"
+doas chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup -S \$g 2>/dev/null || true; done"
+doas chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup matcha \$g 2>/dev/null || true; done"
+doas chroot "$CHROOT" /bin/sh -c "passwd -d matcha 2>/dev/null || true"
+
 cp -a "$WORKSPACE"/iso-profile/. "$APORTS"/scripts/
 chmod +x "$APORTS"/scripts/*.sh
 
 cd "$APORTS"/scripts
-source ./mkimg.matcha.sh
 
 sh mkimage.sh \
     --outdir /out \

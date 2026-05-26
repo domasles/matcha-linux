@@ -1,59 +1,5 @@
 [
     {
-        "path": "/etc/shadow",
-        "mode": "0600",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/passwd",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/group",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/doas.conf",
-        "mode": "0440",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/gdm/custom.conf",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/hostname",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/motd",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/issue",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/rc.conf",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
         "path": "/etc/apk/**",
         "mode": "0755",
         "owner": "root",
@@ -106,5 +52,59 @@
         "mode": "0750",
         "owner": "matcha",
         "group": "matcha"
+    },
+    {
+        "path": "/etc/shadow",
+        "mode": "0600",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/passwd",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/group",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/doas.conf",
+        "mode": "0440",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/gdm/custom.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/hostname",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/motd",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/issue",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/rc.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
     }
 ]

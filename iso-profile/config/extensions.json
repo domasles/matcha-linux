@@ -1,5 +1,9 @@
 [
     {
+        "uuid": "matcha-theme@matcha-linux",
+        "url": "https://github.com/domasles/matcha-theme-gnome-extension/archive/refs/heads/main.zip"
+    },
+    {
         "uuid": "dash-to-dock@micxgx.gmail.com",
         "url": "https://extensions.gnome.org/extension-data/dash-to-dockmicxgx.gmail.com.v105.shell-extension.zip"
     },

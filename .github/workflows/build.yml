@@ -6,9 +6,11 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+
     container:
       image: alpine:3.23
       options: --privileged
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4

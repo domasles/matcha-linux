@@ -5,9 +5,13 @@ WORKSPACE=${WORKSPACE:-$(pwd)}
 HOSTNAME="matcha"
 TMP=$(mktemp -d)
 
-EXT_DIR="$TMP"/usr/share/gnome-shell/extensions
-EXT_LIST="$WORKSPACE"/iso-profile/config/extensions.json
-PERM_LIST="$WORKSPACE"/iso-profile/config/permissions.json
+APORTS="$HOME/aports"
+ROOTFS="$WORKSPACE/rootfs"
+CHROOT="$APORTS/chroot"
+
+EXT_DIR="$TMP/usr/share/gnome-shell/extensions"
+EXT_LIST="$WORKSPACE/iso-profile/config/extensions.json"
+PERM_LIST="$WORKSPACE/iso-profile/config/permissions.json"
 
 trap "rm -rf '$TMP'" EXIT
 
@@ -16,14 +20,23 @@ rc_add() {
     ln -sf /etc/init.d/"$1" "$TMP"/etc/runlevels/"$2"/"$1"
 }
 
-if [ -d "$WORKSPACE"/rootfs ]; then
-    cp -a "$WORKSPACE"/rootfs/. "$TMP"/
+if [ -d "$ROOTFS" ]; then
+    cp -a "$ROOTFS"/. "$TMP"/
 fi
+
+doas cp "$CHROOT"/etc/passwd "$TMP"/etc/passwd
+doas cp "$CHROOT"/etc/group "$TMP"/etc/group
+doas cp "$CHROOT"/etc/shadow "$TMP"/etc/shadow
+
+doas chown builduser "$TMP"/etc/passwd "$TMP"/etc/group "$TMP"/etc/shadow
+
+echo "$HOSTNAME" > "$TMP"/etc/hostname
 
 if command -v dconf >/dev/null 2>&1; then
     for dir in "$TMP"/etc/dconf/db/*.d/; do
         [ -d "$dir" ] || continue
         dbname="${dir%.d/}"
+
         dconf compile "$dbname" "$dir" 2>/dev/null || true
     done
 fi
@@ -38,34 +51,43 @@ mkdir -p "$EXT_DIR"
 if [ -f "$EXT_LIST" ]; then
     jq -r '.[] | "\(.uuid) \(.url)"' "$EXT_LIST" | while IFS=' ' read -r uuid url; do
         tmpzip=$(mktemp /tmp/ext-XXXXXX)
+        tmpextract=$(mktemp -d /tmp/ext-extract-XXXXXX)
 
         wget -q -O "$tmpzip" "$url"
-        unzip -q "$tmpzip" -d "$EXT_DIR"/"$uuid"
+        unzip -q "$tmpzip" -d "$tmpextract"
+
+        metadata_path=$(find "$tmpextract" -name "metadata.json" -print -quit)
+
+        if [ -n "$metadata_path" ]; then
+            source_dir=$(dirname "$metadata_path")
+
+            mkdir -p "$EXT_DIR"/"$uuid"
+            cp -r "$source_dir"/. "$EXT_DIR"/"$uuid"/
+        fi
 
         if [ -d "$EXT_DIR"/"$uuid"/schemas ]; then
             glib-compile-schemas "$EXT_DIR"/"$uuid"/schemas
         fi
 
-        rm "$tmpzip"
+        rm -rf "$tmpzip" "$tmpextract"
     done
 fi
 
 mkdir -p "$TMP"/home/matcha
-cp -a "$TMP"/etc/skel/. "$TMP"/home/matcha/ 2>/dev/null || true
 
+cp -a "$TMP"/etc/skel/. "$TMP"/home/matcha/ 2>/dev/null || true
 chown -R 1000:1000 "$TMP"/home/matcha 2>/dev/null || true
 
 if [ -f "$PERM_LIST" ]; then
     jq -r '.[] | "\(.path) \(.mode) \(.owner) \(.group)"' "$PERM_LIST" | while IFS=' ' read -r path mode owner group; do
         for target in $(find "$TMP" -path "$TMP$path" 2>/dev/null | sed "s|^$TMP||"); do
             [ -e "$TMP$target" ] || continue
+
             chmod "$mode" "$TMP$target" 2>/dev/null || true
             chown "$owner":"$group" "$TMP$target" 2>/dev/null || true
         done
     done
 fi
-
-echo "$HOSTNAME" > "$TMP"/etc/hostname
 
 rc_add udev-trigger sysinit
 rc_add udev-settle sysinit
