@@ -24,11 +24,11 @@ if [ -d "$ROOTFS" ]; then
     cp -a "$ROOTFS"/. "$TMP"/
 fi
 
-doas cp "$CHROOT"/etc/passwd "$TMP"/etc/passwd
-doas cp "$CHROOT"/etc/group "$TMP"/etc/group
-doas cp "$CHROOT"/etc/shadow "$TMP"/etc/shadow
+sudo cp "$CHROOT"/etc/passwd "$TMP"/etc/passwd
+sudo cp "$CHROOT"/etc/group "$TMP"/etc/group
+sudo cp "$CHROOT"/etc/shadow "$TMP"/etc/shadow
 
-doas chown builduser "$TMP"/etc/passwd "$TMP"/etc/group "$TMP"/etc/shadow
+sudo chown builduser "$TMP"/etc/passwd "$TMP"/etc/group "$TMP"/etc/shadow
 
 echo "$HOSTNAME" > "$TMP"/etc/hostname
 

@@ -1,9 +1,9 @@
 alpine-base
 git
-doas
+sudo
 networkmanager
 elogind
-polkit-elogind
+polkit
 eudev
 udev-init-scripts
 udev-init-scripts-openrc
@@ -12,6 +12,7 @@ gnome
 gnome-apps-core
 gnome-shell-extensions
 zsh
+zsh-vcs
 distrobox
 pipewire
 pipewire-pulse

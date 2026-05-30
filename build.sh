@@ -2,28 +2,28 @@
 set -e
 
 ALPINE_VERSION="3.23"
-MATCHA_VERSION="26.05.26"
+MATCHA_VERSION="26.05.30"
 
 WORKSPACE=$(pwd)
 
 APORTS="$HOME/aports"
 CHROOT="$APORTS/chroot"
 
-trap "doas rm -rf '$CHROOT'" EXIT
+trap "sudo rm -rf '$CHROOT'" EXIT
 
 USER_GROUPS="audio input video kvm netdev plugdev seat"
 
 if [ "$(id -u)" -eq 0 ]; then
     apk update
     apk add --no-cache alpine-sdk xorriso squashfs-tools \
-        syslinux grub-efi mtools mkinitfs git doas dconf \
+        syslinux grub-efi mtools mkinitfs git sudo dconf \
         alpine-conf nodejs unzip jq glib
 
     if ! id builduser >/dev/null 2>&1; then
         adduser -D builduser
         adduser builduser abuild
 
-        echo "permit nopass builduser" > /etc/doas.conf
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/builduser
     fi
 
     chown -R builduser:abuild "$WORKSPACE"
@@ -35,7 +35,7 @@ fi
 
 if [ ! -f "$HOME"/.abuild/*.rsa ]; then
     abuild-keygen -a -n
-    doas cp "$HOME"/.abuild/*.rsa.pub /etc/apk/keys/
+    sudo cp "$HOME"/.abuild/*.rsa.pub /etc/apk/keys/
 fi
 
 if [ ! -d "$APORTS" ]; then
@@ -43,16 +43,16 @@ if [ ! -d "$APORTS" ]; then
 fi
 
 mkdir -p "$CHROOT/etc/apk/keys"
-doas cp /etc/apk/keys/* "$CHROOT/etc/apk/keys/"
 
-doas apk add --root "$CHROOT" --initdb \
-    --repository https://dl-cdn.alpinelinux.org/alpine/v"$ALPINE_VERSION"/main \
-    --no-cache alpine-base
+sudo cp /etc/apk/keys/* "$CHROOT/etc/apk/keys/"
+sudo cp /etc/apk/repositories "$CHROOT"/etc/apk/repositories
 
-doas chroot "$CHROOT" /bin/sh -c "adduser -D -h /home/matcha -s /bin/zsh -G wheel -g 'Live User' -u 1000 matcha || true"
-doas chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup -S \$g 2>/dev/null || true; done"
-doas chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup matcha \$g 2>/dev/null || true; done"
-doas chroot "$CHROOT" /bin/sh -c "passwd -d matcha 2>/dev/null || true"
+sudo apk add --root "$CHROOT" --initdb --no-cache alpine-base
+
+sudo chroot "$CHROOT" /bin/sh -c "adduser -D -h /home/matcha -s /bin/zsh -G wheel -g 'Live User' -u 1000 matcha || true"
+sudo chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup -S \$g 2>/dev/null || true; done"
+sudo chroot "$CHROOT" /bin/sh -c "for g in $USER_GROUPS; do addgroup matcha \$g 2>/dev/null || true; done"
+sudo chroot "$CHROOT" /bin/sh -c "passwd -d matcha 2>/dev/null || true"
 
 cp -a "$WORKSPACE"/iso-profile/. "$APORTS"/scripts/
 chmod +x "$APORTS"/scripts/*.sh

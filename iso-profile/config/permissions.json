@@ -72,12 +72,6 @@
         "group": "root"
     },
     {
-        "path": "/etc/doas.conf",
-        "mode": "0440",
-        "owner": "root",
-        "group": "root"
-    },
-    {
         "path": "/etc/gdm/custom.conf",
         "mode": "0644",
         "owner": "root",
@@ -103,6 +97,18 @@
     },
     {
         "path": "/etc/rc.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/sudoers.d/matcha",
+        "mode": "0440",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/polkit-1/rules.d/calamares.rules",
         "mode": "0644",
         "owner": "root",
         "group": "root"
