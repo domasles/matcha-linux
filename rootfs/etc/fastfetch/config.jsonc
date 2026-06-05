@@ -1,0 +1,56 @@
+{
+  "logo": {
+    "source": "/etc/fastfetch/logo.png",
+    "type": "chafa",
+    "width": 30,
+    "height": 15
+  },
+
+  "display": {
+    "color": {
+      "keys": "green",
+      "title": "bright_green"
+    }
+  },
+
+  "modules": [
+    "title",
+    "separator",
+    {
+        "type": "os",
+        "key": "OS"
+    },
+    {
+        "type": "host",
+        "key": "Host"
+    },
+    {
+        "type": "kernel",
+        "key": "Kernel"
+    },
+    {
+        "type": "uptime",
+        "key": "Uptime"
+    },
+    "packages",
+    "shell",
+    {
+        "type": "display",
+        "key": "Resolution"
+    },
+    {
+        "type": "cpu",
+        "key": "CPU"
+    },
+    {
+        "type": "gpu",
+        "key": "GPU"
+    },
+    {
+        "type": "memory",
+        "key": "Memory"
+    },
+    "break",
+    "colors"
+  ]
+}
