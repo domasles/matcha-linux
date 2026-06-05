@@ -8,19 +8,19 @@ profile_matcha() {
     profile_abbrev="matcha"
     image_ext="iso"
     output_format="iso"
-    arch="x86_64"
+    arch="$ARCH"
     kernel_addons="xtables-addons"
     kernel_cmdline="unionfs_size=512M console=tty0"
     syslinux_serial="0 115200"
     apkovl="genapkovl.sh"
     image_name="matcha-linux"
     title="Matcha Linux"
-    hostname="matcha"
+    hostname="$HOSTNAME"
 
     apks="alpine-base linux-lts grub grub-bios grub-efi
         git sudo networkmanager elogind polkit eudev openssl
         udev-init-scripts udev-init-scripts-openrc dbus gnome
-        gnome-apps-core gnome-shell-extensions zsh zsh-vcs
+        gnome-apps-core gnome-shell-extensions zsh zsh-vcs tzdata
         pipewire pipewire-pulse wireplumber networkmanager-wifi
         icu-data-full font-noto font-noto-extra font-noto-emoji
         font-noto-cjk font-noto-symbols apk-polkit-rs matcha-calamares"

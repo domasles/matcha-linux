@@ -1,13 +1,7 @@
 #!/bin/sh
 set -e
 
-WORKSPACE=${WORKSPACE:-$(pwd)}
-HOSTNAME="matcha"
 TMP=$(mktemp -d)
-
-APORTS="$HOME/aports"
-ROOTFS="$WORKSPACE/rootfs"
-CHROOT="$APORTS/chroot"
 
 EXT_DIR="$TMP/usr/share/gnome-shell/extensions"
 EXT_LIST="$WORKSPACE/iso-profile/config/extensions.json"
@@ -20,8 +14,8 @@ rc_add() {
     ln -sf /etc/init.d/"$1" "$TMP"/etc/runlevels/"$2"/"$1"
 }
 
-if [ -d "$ROOTFS" ]; then
-    cp -a "$ROOTFS"/. "$TMP"/
+if [ -d "$WORKSPACE"/rootfs ]; then
+    cp -a "$WORKSPACE"/rootfs/. "$TMP"/
 fi
 
 sudo cp "$CHROOT"/etc/passwd "$TMP"/etc/passwd
@@ -111,7 +105,5 @@ rc_add networkmanager default
 rc_add udev-postmount default
 rc_add elogind default
 rc_add gdm default
-
-rc_add apk-polkit-server start
 
 tar -C "$TMP" -c . | gzip -9 > "$HOSTNAME".apkovl.tar.gz
