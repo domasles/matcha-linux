@@ -5,6 +5,9 @@ networkmanager
 elogind
 polkit
 eudev
+fastfetch
+chafa
+imagemagick
 udev-init-scripts
 udev-init-scripts-openrc
 dbus
@@ -13,7 +16,7 @@ gnome-apps-core
 gnome-shell-extensions
 zsh
 zsh-vcs
-distrobox
+tzdata
 pipewire
 pipewire-pulse
 wireplumber
