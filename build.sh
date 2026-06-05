@@ -9,6 +9,10 @@ WORKSPACE=$(pwd)
 APORTS="$HOME/aports"
 CHROOT="$APORTS/chroot"
 
+CALAMARES_REPO="domasles/matcha-calamares"
+CALAMARES_TAG="latest"
+LOCAL_REPO="/tmp/local-repo"
+
 trap "sudo rm -rf '$CHROOT'" EXIT
 
 USER_GROUPS="audio input video kvm netdev plugdev seat"
@@ -17,7 +21,7 @@ if [ "$(id -u)" -eq 0 ]; then
     apk update
     apk add --no-cache alpine-sdk xorriso squashfs-tools \
         syslinux grub-efi mtools mkinitfs git sudo dconf \
-        alpine-conf nodejs unzip jq glib
+        alpine-conf nodejs unzip jq glib curl
 
     if ! id builduser >/dev/null 2>&1; then
         adduser -D builduser
@@ -37,6 +41,26 @@ if [ ! -f "$HOME"/.abuild/*.rsa ]; then
     abuild-keygen -a -n
     sudo cp "$HOME"/.abuild/*.rsa.pub /etc/apk/keys/
 fi
+
+PRIVKEY=$(echo "$HOME"/.abuild/*.rsa)
+API_URL="https://api.github.com/repos/$CALAMARES_REPO/releases/$CALAMARES_TAG"
+RELEASE_JSON=$(curl -fsSL -H "Accept: application/vnd.github+json" "$API_URL")
+
+mkdir -p "$LOCAL_REPO/x86_64"
+
+for url in $(echo "$RELEASE_JSON" | jq -r '.assets[].browser_download_url'); do
+    name="${url##*/}"
+
+    case "$name" in
+        *.apk)
+            curl -fsSL -o "$LOCAL_REPO"/x86_64/"$name" "$url" ;;
+        *.rsa.pub)
+            sudo curl -fsSL -o /etc/apk/keys/"$name" "$url" ;;
+    esac
+done
+
+apk index -o "$LOCAL_REPO"/x86_64/APKINDEX.tar.gz "$LOCAL_REPO"/x86_64/*.apk
+abuild-sign -k "$PRIVKEY" "$LOCAL_REPO"/x86_64/APKINDEX.tar.gz
 
 if [ ! -d "$APORTS" ]; then
     git clone --depth 1 --branch "$ALPINE_VERSION"-stable https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
@@ -61,7 +85,9 @@ cd "$APORTS"/scripts
 
 sh mkimage.sh \
     --outdir /out \
+    --repository "$LOCAL_REPO" \
     --repository https://dl-cdn.alpinelinux.org/alpine/v"$ALPINE_VERSION"/main \
     --repository https://dl-cdn.alpinelinux.org/alpine/v"$ALPINE_VERSION"/community \
     --profile matcha \
-    --tag "$MATCHA_VERSION"
+    --tag "$MATCHA_VERSION" \
+    --hostkeys

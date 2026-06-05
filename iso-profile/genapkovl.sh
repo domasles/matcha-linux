@@ -112,4 +112,6 @@ rc_add udev-postmount default
 rc_add elogind default
 rc_add gdm default
 
+rc_add apk-polkit-server start
+
 tar -C "$TMP" -c . | gzip -9 > "$HOSTNAME".apkovl.tar.gz

@@ -18,7 +18,7 @@ profile_matcha() {
     hostname="matcha"
 
     apks="alpine-base linux-lts grub grub-bios grub-efi
-        git sudo networkmanager elogind polkit eudev
+        git sudo networkmanager elogind polkit eudev openssl
         udev-init-scripts udev-init-scripts-openrc dbus gnome
         gnome-apps-core gnome-shell-extensions zsh zsh-vcs
         pipewire pipewire-pulse wireplumber networkmanager-wifi
