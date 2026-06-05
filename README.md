@@ -33,6 +33,12 @@ Matcha Linux offers a unique blend of simplicity and modern functionality:
 
 Compared to other distributions and base Alpine, Matcha Linux provides a curated, opinionated desktop experience without bloat while maintaining the flexibility and security benefits of Alpine.
 
+## Tips and Tricks for Users
+
+- **Live Environment**: You can test Matcha Linux without installing by booting from the ISO
+- **Installation**: Use the included Calamares installer for a straightforward installation process
+- **Install a Distrobox Terminal**: Use Distrobox to install a container and run other distributions within Matcha Linux. This is especially useful for users who want to run software that isn't available in Alpine's repositories (common issue when trying to run Linux apps that won't launch natively)
+
 ## Requirements for a Build
 
 - **act** - To run GitHub Actions workflows locally

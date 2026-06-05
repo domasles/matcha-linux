@@ -23,7 +23,7 @@ if [ "$(id -u)" -eq 0 ]; then
         adduser -D builduser
         adduser builduser abuild
 
-        echo "builduser ALL=(ALL) NOPASSWD: ALL" | sudo tee /etc/sudoers.d/builduser
+        echo "builduser ALL=(ALL) NOPASSWD: ALL" | tee /etc/sudoers.d/builduser
     fi
 
     chown -R builduser:abuild "$WORKSPACE"
@@ -44,7 +44,7 @@ fi
 
 mkdir -p "$CHROOT/etc/apk/keys"
 
-sudo cp /etc/apk/keys/* "$CHROOT/etc/apk/keys/"
+sudo cp /etc/apk/keys/* "$CHROOT"/etc/apk/keys/
 sudo cp /etc/apk/repositories "$CHROOT"/etc/apk/repositories
 
 sudo apk add --root "$CHROOT" --initdb --no-cache alpine-base

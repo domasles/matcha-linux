@@ -17,13 +17,13 @@ profile_matcha() {
     title="Matcha Linux"
     hostname="matcha"
 
-    apks="alpine-base linux-lts linux-firmware-none grub grub-bios
-        grub-efi git sudo networkmanager elogind polkit eudev
+    apks="alpine-base linux-lts grub grub-bios grub-efi
+        git sudo networkmanager elogind polkit eudev
         udev-init-scripts udev-init-scripts-openrc dbus gnome
         gnome-apps-core gnome-shell-extensions zsh zsh-vcs
         pipewire pipewire-pulse wireplumber networkmanager-wifi
         icu-data-full font-noto font-noto-extra font-noto-emoji
-        font-noto-cjk font-noto-symbols apk-polkit-rs"
+        font-noto-cjk font-noto-symbols apk-polkit-rs matcha-calamares"
 
     local _k _a
 
