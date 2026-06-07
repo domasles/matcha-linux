@@ -2,7 +2,7 @@
 set -e
 
 ALPINE_VERSION="3.23"
-MATCHA_VERSION="26.06.05"
+MATCHA_VERSION="26.06.08"
 
 ARCH="x86_64"
 HOSTNAME="matcha"
@@ -12,8 +12,8 @@ WORKSPACE=$(pwd)
 APORTS="$HOME/aports"
 CHROOT="$APORTS/chroot"
 
-CALAMARES_REPO="domasles/matcha-calamares"
-CALAMARES_TAG="latest"
+INSTALLER_REPO="domasles/matcha-calamares"
+INSTALLER_TAG="latest"
 LOCAL_REPO="/tmp/local-repo"
 
 trap "sudo rm -rf '$CHROOT'" EXIT
@@ -23,7 +23,7 @@ USER_GROUPS="audio input video kvm netdev plugdev seat"
 if [ "$(id -u)" -eq 0 ]; then
     apk update
     apk add --no-cache alpine-sdk xorriso squashfs-tools \
-        syslinux grub-efi mtools mkinitfs git sudo dconf \
+        grub-efi mtools mkinitfs git sudo dconf \
         alpine-conf nodejs unzip jq glib curl
 
     if ! id builduser >/dev/null 2>&1; then
@@ -47,8 +47,9 @@ if [ ! -f "$HOME"/.abuild/*.rsa ]; then
     sudo cp "$HOME"/.abuild/*.rsa.pub /etc/apk/keys/
 fi
 
+# Download Matcha Calamares packages and set up a local repository
 PRIVKEY=$(echo "$HOME"/.abuild/*.rsa)
-API_URL="https://api.github.com/repos/$CALAMARES_REPO/releases/$CALAMARES_TAG"
+API_URL="https://api.github.com/repos/$INSTALLER_REPO/releases/$INSTALLER_TAG"
 RELEASE_JSON=$(curl -fsSL -H "Accept: application/vnd.github+json" "$API_URL")
 
 mkdir -p "$LOCAL_REPO"/"$ARCH"
@@ -96,3 +97,17 @@ sh mkimage.sh \
     --profile matcha \
     --tag "$MATCHA_VERSION" \
     --hostkeys
+
+# Disable Legacy BIOS boot by getting rid of MBR boot code
+ISO="/out/matcha-linux-$MATCHA_VERSION-$ARCH.iso"
+
+xorriso -indev "$ISO" \
+    -outdev "$ISO" \
+    -boot_image grub grub2_mbr=/dev/zero \
+    -boot_image any discard \
+    -boot_image any next \
+    -boot_image grub efi_path=boot/grub/efi.img \
+    -boot_image any platform_id=0xef \
+    -boot_image any emul_type=no_emulation \
+    -changes_pending yes \
+    -commit 2>/dev/null || true

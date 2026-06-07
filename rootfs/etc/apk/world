@@ -29,3 +29,7 @@ font-noto-cjk
 font-noto-symbols
 apk-polkit-rs
 matcha-calamares
+cryptsetup
+device-mapper
+lvm2
+efibootmgr

@@ -23,6 +23,7 @@ Matcha Linux offers a unique blend of simplicity and modern functionality:
 - **Lightweight & Fast** - Built on Alpine Linux for minimal resource usage and maximum performance
 - **Modern Desktop Experience** - Full GNOME desktop environment with carefully curated extensions
 - **Out-of-the-Box Usability** - Pre-configured system settings for an immediate productive experience
+- **EFI only** - Focused on modern hardware with UEFI support, saying goodbye to legacy BIOS
 - **Developer-Friendly** - Includes tools like git and development utilities
 - **Audio Ready** - PipeWire stack for modern audio handling
 - **Network Management** - NetworkManager with WiFi support included
@@ -38,6 +39,12 @@ Compared to other distributions and base Alpine, Matcha Linux provides a curated
 - **Live Environment**: You can test Matcha Linux without installing by booting from the ISO
 - **Installation**: Use the included Calamares installer for a straightforward installation process
 - **Install a Distrobox Terminal**: Use Distrobox to install a container and run other distributions within Matcha Linux. This is especially useful for users who want to run software that isn't available in Alpine's repositories (common issue when trying to run Linux apps that won't launch natively)
+
+## Requirements to run Matcha Linux
+
+- **Memory**: 4GB RAM (live environment uses around 3.5GB, installed system idles somewhere at 1.5GB)
+- **Storage**: 10GB of free disk space for installation
+- **UEFI Firmware**: Matcha Linux is designed for modern hardware with UEFI support, so legacy BIOS systems are not supported
 
 ## Requirements for a Build
 
@@ -62,13 +69,14 @@ act workflow_dispatch
 3. **Find your builds**:
 Builds will be zipped in the `build/` directory after completion.
 
-## Build Process Details
+## How to run in a VM
 
-Every build will clean up itself - the container used to build will be deleted after the process completes. This ensures:
-
-- No leftover build artifacts
-- Clean environment for each build
-- Consistent, reproducible results
+VirtualBox:
+- Create a new VM with UEFI firmware and at least 4GB of RAM
+- (Recommended) Enable 3D acceleration and at least 128MB of video memory for better performance
+- Attach the Matcha Linux ISO as a bootable drive
+- Select the UEFI option in the VM settings
+- Start the VM!
 
 ## Configuration
 
