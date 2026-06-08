@@ -1,6 +1,6 @@
 NAME="Matcha Linux"
-VERSION="26.06.08"
-VERSION_ID="26.06.08"
+VERSION="2026.06.09"
+VERSION_ID="2026.06.09"
 PRETTY_NAME="Matcha Linux"
 ID="matcha"
 ID_LIKE="alpine"
