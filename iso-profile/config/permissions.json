@@ -54,6 +54,24 @@
         "group": "matcha"
     },
     {
+        "path": "/etc/fastfetch/**",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/skel/**",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/conf.d/**",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
         "path": "/etc/shadow",
         "mode": "0600",
         "owner": "root",
