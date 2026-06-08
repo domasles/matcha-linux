@@ -98,7 +98,7 @@ sh mkimage.sh \
     --tag "$MATCHA_VERSION" \
     --hostkeys
 
-# Disable Legacy BIOS boot by getting rid of MBR boot code
+# Disable Legacy BIOS boot
 ISO="/out/matcha-linux-$MATCHA_VERSION-$ARCH.iso"
 
 xorriso -indev "$ISO" \

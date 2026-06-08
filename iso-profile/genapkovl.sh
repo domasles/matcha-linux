@@ -92,6 +92,7 @@ rc_add dmesg sysinit
 rc_add udev sysinit
 
 rc_add dbus boot
+rc_add swap boot
 rc_add sysctl boot
 rc_add syslog boot
 rc_add cgroups boot
