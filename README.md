@@ -104,7 +104,7 @@ apks="$apks your-custom-package-here"  # this doesn't alter the original list, j
 
 ### Configuration Files
 
-- **iso-profile/mkimg.matcha.sh** - Main build profile with kernel, packages, and image settings
+- **iso-profile/mkimg.matcha.sh** - Main build profile with kernel, packages and image settings
 - **iso-profile/config/** - Extension and permission configurations
 - **iso-profile/genapkovl.sh** - A portable overlay generation script
 

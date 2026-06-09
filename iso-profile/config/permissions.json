@@ -1,75 +1,87 @@
 [
     {
-        "path": "/etc/apk/**",
+        "path": "/etc/apk",
         "mode": "0755",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/**",
+        "path": "/etc",
         "mode": "0755",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/gdm/**",
+        "path": "/etc/gdm",
         "mode": "0755",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/dconf/db/**",
+        "path": "/etc/dconf/db",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/dconf/profile/**",
+        "path": "/etc/dconf/profile",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/usr/share/**",
+        "path": "/usr/share",
         "mode": "0755",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/usr/share/backgrounds/matcha/**",
+        "path": "/usr/share/backgrounds/matcha",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/usr/share/gnome-background-properties/**",
+        "path": "/usr/share/gnome-background-properties",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/home/matcha/**",
+        "path": "/home/matcha",
         "mode": "0750",
-        "owner": "matcha",
-        "group": "matcha"
+        "owner": "1000",
+        "group": "1000",
+        "recursive": true
     },
     {
-        "path": "/etc/fastfetch/**",
+        "path": "/etc/fastfetch",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/skel/**",
-        "mode": "0644",
+        "path": "/etc/skel",
+        "mode": "0755",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
-        "path": "/etc/conf.d/**",
+        "path": "/etc/conf.d",
         "mode": "0644",
         "owner": "root",
-        "group": "root"
+        "group": "root",
+        "recursive": true
     },
     {
         "path": "/etc/shadow",
@@ -85,12 +97,6 @@
     },
     {
         "path": "/etc/group",
-        "mode": "0644",
-        "owner": "root",
-        "group": "root"
-    },
-    {
-        "path": "/etc/gdm/custom.conf",
         "mode": "0644",
         "owner": "root",
         "group": "root"
@@ -120,13 +126,25 @@
         "group": "root"
     },
     {
+        "path": "/etc/gdm/custom.conf",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
+        "path": "/etc/polkit-1/rules.d/calamares.rules",
+        "mode": "0644",
+        "owner": "root",
+        "group": "root"
+    },
+    {
         "path": "/etc/sudoers.d/matcha",
         "mode": "0440",
         "owner": "root",
         "group": "root"
     },
     {
-        "path": "/etc/polkit-1/rules.d/calamares.rules",
+        "path": "/etc/skel/.zshrc",
         "mode": "0644",
         "owner": "root",
         "group": "root"

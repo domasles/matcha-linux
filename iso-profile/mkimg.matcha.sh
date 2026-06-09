@@ -28,6 +28,7 @@ profile_matcha() {
 
     for _k in $kernel_flavors; do
         apks="$apks linux-$_k"
+
         for _a in $kernel_addons; do
             apks="$apks $_a-$_k"
         done
