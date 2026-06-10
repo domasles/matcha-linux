@@ -24,7 +24,7 @@ jobs:
           - flavor: ${{ github.event.inputs.flavor == 'virt' && 'lts' || '' }}
 
     container:
-      image: alpine:3.23
+      image: alpine:3.24
       options: --privileged
 
     steps:
