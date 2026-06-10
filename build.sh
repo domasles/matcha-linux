@@ -6,6 +6,7 @@ MATCHA_VERSION="2026.06.09"
 
 ARCH="x86_64"
 HOSTNAME="matcha"
+KERNEL_FLAVOR="${KERNEL_FLAVOR:-virt}"
 
 WORKSPACE=$(pwd)
 
@@ -39,7 +40,8 @@ if [ "$(id -u)" -eq 0 ]; then
 
     exec su - builduser -c "cd '$WORKSPACE' && \
         WORKSPACE='$WORKSPACE' APORTS='$APORTS' \
-        CHROOT='$CHROOT' HOSTNAME='$HOSTNAME' sh '$0'"
+        CHROOT='$CHROOT' HOSTNAME='$HOSTNAME' \
+        KERNEL_FLAVOR='$KERNEL_FLAVOR' sh '$0'"
 fi
 
 if [ ! -f "$HOME/.abuild/"*.rsa ]; then
@@ -100,7 +102,7 @@ sh mkimage.sh \
     --hostkeys
 
 # Disable Legacy BIOS boot
-ISO="/out/matcha-linux-$MATCHA_VERSION-$ARCH.iso"
+ISO="/out/matcha-linux-$KERNEL_FLAVOR-$MATCHA_VERSION-$ARCH.iso"
 
 xorriso -indev "$ISO" \
     -outdev "$ISO" \

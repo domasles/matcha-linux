@@ -1,4 +1,8 @@
 alpine-base
+mesa-dri-gallium
+mesa-gl
+mesa-gles
+mesa-egl
 git
 sudo
 networkmanager
