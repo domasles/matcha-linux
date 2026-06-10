@@ -24,6 +24,7 @@ Matcha Linux offers a unique blend of simplicity and modern functionality:
 - **Modern Desktop Experience** - Full GNOME desktop environment with carefully curated extensions
 - **Out-of-the-Box Usability** - Pre-configured system settings for an immediate productive experience
 - **EFI only** - Focused on modern hardware with UEFI support, saying goodbye to legacy BIOS
+- **Works with VMs** - Matcha Linux Virt is optimized for virtual environments like VirtualBox and Hyper-V
 - **Developer-Friendly** - Includes tools like git and development utilities
 - **Audio Ready** - PipeWire stack for modern audio handling
 - **Network Management** - NetworkManager with WiFi support included
@@ -75,7 +76,15 @@ VirtualBox:
 - Create a new VM with UEFI firmware and at least 4GB of RAM
 - (Recommended) Enable 3D acceleration and at least 128MB of video memory for better performance
 - Attach the Matcha Linux ISO as a bootable drive
+- Create a new virtual hard disk (at least 10GB) and attach it to the VM
 - Select the UEFI option in the VM settings
+- Start the VM!
+
+Hyper-V:
+- Create a new Generation 2 (enables UEFI) VM with at least 4GB of RAM
+- Attach the Matcha Linux ISO as a bootable drive
+- Create a new virtual hard disk (at least 10GB) and attach it to the VM
+- Disable Secure Boot in the VM settings
 - Start the VM!
 
 ## Configuration
