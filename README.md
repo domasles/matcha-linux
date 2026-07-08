@@ -62,7 +62,7 @@ cd matcha-linux
 
 2. **Run the build**:
 ```bash
-act workflow_dispatch
+act workflow_dispatch  # You can add --input flavor=[virt,lts] because by default it will build both
 ```
 
 > NOTE: `workflow_dispatch` is required here, because `act` can't automatically detect the event to choose. Running act without an event specified will result in an error.
@@ -86,6 +86,21 @@ Hyper-V:
 - Create a new virtual hard disk (at least 10GB) and attach it to the VM
 - Disable Secure Boot in the VM settings
 - Start the VM!
+
+QEMU:
+- Download the OVMF firmware for UEFI support (e.g., `OVMF.fd`) and place it in the same directory as the ISO
+- Navigate to the directory containing the ISO and OVMF.fd files and create a new virtual hard disk (at least 10GB) for the VM:
+  ```bash
+  qemu-img create -f qcow2 matcha-linux.qcow2 10G
+  ```
+- Use the following command to start a VM with Matcha Linux:
+  ```bash
+  # For Linux/macOS:
+  qemu-system-x86_64 -m 4G -accel kvm -device virtio-gpu-pci,3d=on -display sdl,gl=on -bios ./OVMF.fd -cdrom ./matcha-linux-virt-2026.06.10-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
+
+  # For Windows:
+  qemu-system-x86_64 -m 4G -accel whpx -bios .\OVMF.fd -cdrom .\matcha-linux-virt-2026.06.10-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
+  ```
 
 ## Configuration
 
