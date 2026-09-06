@@ -9,22 +9,28 @@ profile_matcha() {
     image_ext="iso"
     output_format="iso"
     arch="$ARCH"
-    kernel_cmdline="unionfs_size=512M console=tty0"
+    kernel_cmdline="unionfs_size=2G console=tty0"
     apkovl="genapkovl.sh"
     image_name="matcha-linux-$KERNEL_FLAVOR"
     title="Matcha Linux"
     hostname="$HOSTNAME"
 
-    apks="alpine-base linux-firmware-none mesa-dri-gallium mesa-gl
-        mesa-gles mesa-egl grub grub-efi git sudo networkmanager
-        elogind polkit eudev openssl fastfetch chafa imagemagick
-        udev-init-scripts udev-init-scripts-openrc dbus gnome
-        gnome-apps-core gnome-shell-extensions zsh zsh-vcs pipewire
-        pipewire-pulse wireplumber networkmanager-wifi icu-data-full
-        font-noto font-noto-extra font-noto-emoji font-noto-cjk
-        font-noto-symbols apk-polkit-rs matcha-calamares"
+    apks="alpine-base linux-firmware-none mesa bolt iio-sensor-proxy
+        grub-efi gvfs dosfstools udisks2
+        zsh git sudo openssl
+        elogind polkit apk-polkit-rs pinentry-gnome
+        eudev dbus localsearch
+        gdm gnome-keyring gnome-shell gsettings-desktop-schemas
+        xdg-desktop-portal-gnome xdg-user-dirs
+        gnome-control-center gnome-tour gnome-console gnome-browser-connector
+        gnome-extensions-app gnome-text-editor gnome-calculator gnome-disk-utility
+        snapshot nautilus loupe decibels firefox resources
+        pipewire pipewire-pulse fastfetch chafa imagemagick
+        networkmanager
+        adwaita-fonts font-noto font-noto-cjk font-noto-emoji
+        matcha-calamares"
 
-    local _k _a
+    local _k
 
     for _k in $kernel_flavors; do
         apks="$apks linux-$_k"

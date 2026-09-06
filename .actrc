@@ -1,1 +1,3 @@
+workflow-dispatch
+-j build
 --artifact-server-path ./build

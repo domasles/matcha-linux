@@ -2,26 +2,17 @@ name: Build Matcha Linux ISO
 
 on:
   workflow_dispatch:
-    inputs:
-      flavor:
-        description: 'Flavor to build'
-        required: true
-        default: 'both'
-        type: choice
-        options: [both, virt, lts]
   release:
     types: [ published ]
 
 jobs:
   build:
+    name: Build ISO (${{ matrix.flavor }})
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
         flavor: [virt, lts]
-        exclude:
-          - flavor: ${{ github.event.inputs.flavor == 'lts' && 'virt' || '' }}
-          - flavor: ${{ github.event.inputs.flavor == 'virt' && 'lts' || '' }}
 
     container:
       image: alpine:3.24
@@ -47,7 +38,7 @@ jobs:
           if-no-files-found: error
 
       - name: Upload ISO to Release
-        if: ${{ env.ACT != 'true' }}
+        if: ${{ env.ACT != 'true' && github.event_name == 'release' }}
         uses: softprops/action-gh-release@v2
         with:
           files: /out/**/*.iso
