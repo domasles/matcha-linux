@@ -5,11 +5,11 @@ grub-efi
 gvfs
 dosfstools
 zsh
-git
 sudo
 openssl
 elogind
 polkit
+polkit-elogind
 eudev
 dbus
 gdm

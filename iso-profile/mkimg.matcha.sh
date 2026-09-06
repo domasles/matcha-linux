@@ -18,7 +18,7 @@ profile_matcha() {
     apks="alpine-base linux-firmware-none mesa bolt iio-sensor-proxy
         grub-efi gvfs dosfstools udisks2
         zsh git sudo openssl
-        elogind polkit apk-polkit-rs pinentry-gnome
+        elogind polkit polkit-elogind apk-polkit-rs pinentry-gnome
         eudev dbus localsearch
         gdm gnome-keyring gnome-shell gsettings-desktop-schemas
         xdg-desktop-portal-gnome xdg-user-dirs
