@@ -1,0 +1,5 @@
+theme = Django
+window-theme = ghostty
+bell-features = no-title
+shell-integration-features = no-cursor
+clipboard-paste-protection = false

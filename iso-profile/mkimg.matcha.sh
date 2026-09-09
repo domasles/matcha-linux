@@ -15,24 +15,5 @@ profile_matcha() {
     title="Matcha Linux"
     hostname="$HOSTNAME"
 
-    apks="alpine-base linux-firmware-none mesa bolt iio-sensor-proxy
-        grub-efi gvfs dosfstools udisks2
-        zsh git sudo openssl
-        elogind polkit polkit-elogind apk-polkit-rs pinentry-gnome
-        eudev dbus localsearch
-        gdm gnome-keyring gnome-shell gsettings-desktop-schemas
-        xdg-desktop-portal-gnome xdg-user-dirs
-        gnome-control-center gnome-tour gnome-console gnome-browser-connector
-        gnome-extensions-app gnome-text-editor gnome-calculator gnome-disk-utility
-        snapshot nautilus loupe decibels firefox resources
-        pipewire pipewire-pulse fastfetch chafa imagemagick
-        networkmanager
-        adwaita-fonts font-noto font-noto-cjk font-noto-emoji
-        matcha-calamares"
-
-    local _k
-
-    for _k in $kernel_flavors; do
-        apks="$apks linux-$_k"
-    done
+    apks="$(cat "$WORKSPACE/rootfs/etc/apk/matcha-pkgs" | tr '\n' ' ')"
 }

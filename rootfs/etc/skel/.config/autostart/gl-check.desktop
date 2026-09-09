@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=OpenGL Check
+Exec=/usr/local/bin/gl-check.sh
+Terminal=false
+NoDisplay=true
+X-GNOME-Autostart-Phase=Initialization

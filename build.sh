@@ -90,6 +90,8 @@ sudo chroot "$CHROOT" /bin/sh -c "passwd -d matcha 2>/dev/null || true"
 cp -a "$WORKSPACE/iso-profile/." "$APORTS/scripts/"
 chmod +x "$APORTS/scripts/"*.sh
 
+echo "linux-$KERNEL_FLAVOR" >> "$WORKSPACE/rootfs/etc/apk/matcha-pkgs"
+
 cd "$APORTS/scripts"
 
 sh mkimage.sh \
@@ -97,6 +99,9 @@ sh mkimage.sh \
     --repository "$LOCAL_REPO" \
     --repository "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/main" \
     --repository "https://dl-cdn.alpinelinux.org/alpine/v$ALPINE_VERSION/community" \
+    --repository "@edge https://dl-cdn.alpinelinux.org/alpine/edge/main" \
+    --repository "@edge https://dl-cdn.alpinelinux.org/alpine/edge/community" \
+    --repository "@edge https://dl-cdn.alpinelinux.org/alpine/edge/testing" \
     --profile matcha \
     --tag "$MATCHA_VERSION" \
     --hostkeys

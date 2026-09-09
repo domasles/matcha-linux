@@ -56,6 +56,13 @@
         "recursive": true
     },
     {
+        "path": "/usr/local/bin",
+        "mode": "0755",
+        "owner": "root",
+        "group": "root",
+        "recursive": true
+    },
+    {
         "path": "/home/matcha",
         "mode": "0750",
         "owner": "1000",

@@ -1,7 +1,7 @@
 {
   "logo": {
     "source": "/etc/fastfetch/logo.png",
-    "type": "chafa",
+    "type": "kitty",
     "width": 30,
     "height": 15
   },
