@@ -16,6 +16,7 @@ polkit
 polkit-elogind
 eudev
 dbus
+dbus-x11
 gdm
 gnome-shell
 gsettings-desktop-schemas

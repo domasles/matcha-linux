@@ -15,5 +15,5 @@ profile_matcha() {
     title="Matcha Linux"
     hostname="$HOSTNAME"
 
-    apks="$(cat "$WORKSPACE/rootfs/etc/apk/matcha-pkgs" | tr '\n' ' ')"
+    apks=$(cat "$WORKSPACE/rootfs/etc/apk/matcha-pkgs")
 }

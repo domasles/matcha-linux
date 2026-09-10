@@ -25,6 +25,7 @@ apk-polkit-rs
 pinentry-gnome
 eudev
 dbus
+dbus-x11
 localsearch
 gdm
 gnome-keyring
