@@ -81,10 +81,10 @@ QEMU:
 - Use the following command to start a VM with Matcha Linux:
   ```bash
   # For Linux/macOS:
-  qemu-system-x86_64 -m 3G -enable-kvm -display sdl,gl=on -bios ./OVMF.fd -cdrom ./matcha-linux-virt-2026.09.10-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
+  qemu-system-x86_64 -m 3G -enable-kvm -display sdl,gl=on -bios ./OVMF.fd -cdrom ./matcha-linux-virt-2026.09.11-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
 
   # For Windows:
-  qemu-system-x86_64 -m 3G -accel whpx -bios .\OVMF.fd -cdrom .\matcha-linux-virt-2026.09.10-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
+  qemu-system-x86_64 -m 3G -accel whpx -bios .\OVMF.fd -cdrom .\matcha-linux-virt-2026.09.11-x86_64.iso -drive file=matcha-linux.qcow2,format=qcow2 -boot d
   ```
 
 ## Configuration
