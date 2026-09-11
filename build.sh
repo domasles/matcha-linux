@@ -71,7 +71,7 @@ apk index -o "$LOCAL_REPO/$ARCH/APKINDEX.tar.gz" "$LOCAL_REPO/$ARCH/"*.apk
 abuild-sign -k "$PRIVKEY" "$LOCAL_REPO/$ARCH/APKINDEX.tar.gz"
 
 if [ ! -d "$APORTS" ]; then
-    git clone --depth 1 --branch "$ALPINE_VERSION"-stable https://gitlab.alpinelinux.org/alpine/aports.git "$APORTS"
+    git clone --depth 1 --branch "$ALPINE_VERSION"-stable https://github.com/alpinelinux/aports.git "$APORTS"
 fi
 
 sudo mkdir -p "$CHROOT/etc/apk/keys"

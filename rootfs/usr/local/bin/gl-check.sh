@@ -1,9 +1,13 @@
 #!/bin/sh
 
-GL_VERSION=$(glxinfo 2>/dev/null | grep -oP 'OpenGL version string:\s+\K[0-9.]+' | tr -d '.')
+GL=$(glxinfo 2>/dev/null | grep -m1 "OpenGL version string:")
 
-if [ -z "$GL_VERSION" ] || [ "$GL_VERSION" -lt 430 ]; then
+case "$GL" in
+    *"OpenGL ES"*) RE=0 ;;
+    *" 4."[3-6]*) RE=1 ;;
+    *) RE=0 ;;
+esac
+
+if [ "$RE" -eq 0 ]; then
     dbus-update-activation-environment LIBGL_ALWAYS_SOFTWARE=1
 fi
-
-rm -f "$0"
